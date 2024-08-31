@@ -10,11 +10,15 @@ int main() {
     if(priorityTaskList.empty()) {
       priorityTaskList.push_back(newTask);  
     } else {
-        for(auto it = priorityTaskList.begin(); it != priorityTaskList.end();++it) {
+        auto it = priorityTaskList.begin();
+        for(; it != priorityTaskList.end();++it) {
             if(get<0>(*it) < get<0>(newTask)) {
                 priorityTaskList.insert(it, newTask);
                 break;
             }
+        }
+        if(it == priorityTaskList.end()) {
+            priorityTaskList.push_back(newTask);
         }
     }
     
